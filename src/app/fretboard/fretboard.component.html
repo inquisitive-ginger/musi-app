@@ -1,0 +1,49 @@
+<div class="main">
+  <mat-card class="fretboard-card">
+    <header>
+      <mat-form-field class="scale-select">
+        <mat-select [(ngModel)]="selectedScaleName" (change)="onScaleChange($event)" placeholder="Scale">
+          <mat-option *ngFor="let scale of availableScales" value="{{scale.short_name}}">{{ scale.long_name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="selectedScale" class="form-select">
+        <mat-select (change)="onFormChange($event, selectedScaleName)" placeholder="Form">
+          <mat-option *ngFor="let form of availableForms" value="{{form.name}}">{{ form.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field *ngIf="selectedForm" class="label-select">
+        <mat-select [(ngModel)]="noteDisplay" placeholder="Note Labels">
+          <mat-option value="scale-degree">Scale Degrees</mat-option>
+          <mat-option value="fingering">Finger Numbers</mat-option>
+          <mat-option value="note-name">Note Names</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </header>
+    <div *ngIf="selectedScale && selectedForm" class="fretboard">
+      <svg viewBox="0 0 500 180"> 
+        <svg:line [ngClass]="{'first-fret': i === 0, 'normal-fret': i !== 0}" *ngFor="let fret of frets; let i = index"
+          [attr.x1]="i === numberOfFrets ? i * (500 / numberOfFrets) - 1 : i * (500 / numberOfFrets)" [attr.y1]="15" 
+          [attr.x2]="i === numberOfFrets ? i * (500 / numberOfFrets) - 1 : i * (500 / numberOfFrets)" [attr.y2]="165" />
+        <svg:g *ngFor="let string of selectedForm.strings; let i = index">
+          <svg:line class="string"
+            [attr.x1]="0" [attr.y1]="i * 30 + 15" [attr.x2]="500" [attr.y2]="i * 30 + 15" />
+          <svg:g *ngFor="let note of string.notes; let j = index">
+            <svg:circle 
+              [ngClass]="{'note': true, 'active-note': testMode ? determineActive(i, j) : getNoteName(note) === getNoteFamliy(currentNote)}" 
+              [attr.cx]="j * (500 / numberOfFrets) + 50" 
+              [attr.cy]="i * 30 + 15" 
+              [attr.r]="note ? 12 : 0" />
+            <svg:text *ngIf="note" class="scale-degree" [attr.x]="j * (500 / numberOfFrets) + 46" [attr.y]="i * 30 + 19">
+              {{ noteDisplay === 'scale-degree' ? getScaleDegree(note) : noteDisplay === 'note-name' ? getNoteName(note) : getFingerNumber(note) }}
+            </svg:text>
+          </svg:g>
+        </svg:g>
+        <svg:text class="start-fret" [attr.x]="0" [attr.y]="179">Fret {{ selectedForm.start_fret }}</svg:text>
+      </svg>
+      <div *ngIf="currentNote" class="footer">
+        <h2>Current Note</h2>
+        <h1>{{ currentNote }}</h1>
+      </div>
+    </div>
+  </mat-card>
+</div>

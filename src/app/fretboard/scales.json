@@ -1,0 +1,40 @@
+{
+    "scales": {
+        "c_major": {
+            "short_name": "c_major",
+            "long_name": "C Major",
+            "type": "major",
+            "forms": {
+                "C": {},
+                "A": {
+                    "name": "A",
+                    "start_fret": 2,
+                    "pattern": ["G","A","B","C","D","E","F","G","A","B","C","D","E","F","G","A"],
+                    "strings": [
+                        { "name": "e", "notes": [0, 244, 0, 314, 0] },
+                        { "name": "B", "notes": [0, 72, 0, 142, 179] },
+                        { "name": "G", "notes": [312, 0, 382, 7, 0] },
+                        { "name": "D", "notes": [140, 177, 0, 247, 0] },
+                        { "name": "A", "notes": [380, 5, 0, 75, 0] },
+                        { "name": "E", "notes": [0, 245, 0, 315, 0] }
+                    ]
+                },
+                "G": {
+                    "name": "G", 
+                    "start_fret": 5,
+                    "pattern": [],
+                    "strings": [
+                        { "name": "e", "notes": [0, 312, 0, 382, 7] },
+                        { "name": "B", "notes": [0, 140, 177, 0, 247] },
+                        { "name": "G", "notes": [380, 5, 0, 75, 0] },
+                        { "name": "D", "notes": [0, 244, 0, 315, 0] },
+                        { "name": "A", "notes": [0, 72, 0, 142, 179] },
+                        { "name": "E", "notes": [0, 312, 0, 382, 7] }
+                    ]
+                },
+                "E": {},
+                "D": {}
+            }
+        }
+    }
+}

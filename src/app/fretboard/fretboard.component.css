@@ -1,0 +1,58 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.scale-select,
+.form-select,
+.label-select{
+    padding: 10px;
+    flex: 1
+}
+
+.fretboard-card {
+    margin: 0 auto;
+}
+
+.fretboard {
+    margin: 0 auto;
+    width: 60%;
+}
+
+.string {
+    stroke-width: 2px;
+    stroke: #000;
+}
+
+.first-fret {
+    stroke-width: 14px;
+    stroke: #2c3e50;
+}
+
+.normal-fret {
+    stroke-width: 3px;
+    stroke: #bdc3c7;
+}
+
+.note {
+    fill: #3E53AF;
+}
+
+.active-note {
+    fill: #D83964;
+}
+
+.start-fret {
+    font-size: small !important;
+}
+
+.scale-degree {
+    font-size: small !important;
+    fill: #fff;
+}
+
+footer {
+    margin-top: 10px;
+}
